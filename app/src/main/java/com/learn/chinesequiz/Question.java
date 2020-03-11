@@ -3,6 +3,9 @@ package com.learn.chinesequiz;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.DrawableRes;
+import androidx.annotation.RawRes;
+
 public class QuestionClass implements Parcelable {
 
     /**
@@ -13,13 +16,17 @@ public class QuestionClass implements Parcelable {
     private String badResult;
     private String badResult1;
     private int statusLevel;
+    private int picture;
+    private int song;
 
-    public QuestionClass(String question, String goodResult, String badResult, String badResult1, int statusLevel) {
+    public QuestionClass(String question, String goodResult, String badResult, String badResult1, int statusLevel, int picture, int song) {
         this.question = question;
         this.goodResult = goodResult;
         this.badResult = badResult;
         this.badResult1 = badResult1;
         this.statusLevel = statusLevel;
+        this.picture = picture;
+        this.song = song;
     }
 
     protected QuestionClass(Parcel in) {
@@ -28,6 +35,8 @@ public class QuestionClass implements Parcelable {
         badResult = in.readString();
         badResult1 = in.readString();
         statusLevel = in.readInt();
+        picture = in.readInt();
+        song = in.readInt();
     }
 
     @Override
@@ -37,6 +46,8 @@ public class QuestionClass implements Parcelable {
         dest.writeString(badResult);
         dest.writeString(badResult1);
         dest.writeInt(statusLevel);
+        dest.writeInt(picture);
+        dest.writeInt(song);
     }
 
     @Override
@@ -55,4 +66,8 @@ public class QuestionClass implements Parcelable {
             return new QuestionClass[size];
         }
     };
+
+    public String getQuestion() {
+        return question;
+    }
 }
